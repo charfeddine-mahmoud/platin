@@ -1,0 +1,16 @@
+# messages.fr.yml
+form:
+    email:
+        label: Entrer votre email
+        error:
+            empty: <strong>Warning!</strong> L'email est obligatoire.
+            format: <strong>Warning!</strong> Le format de saisie du votre adresse e-mail est incorrect.
+            notexist: <strong>Warning!</strong> L'email saisi ne correspond pas à nos clients.
+    password:
+        error:
+            empty: <strong>Warning!</strong> Le mot de passe de client est obligatoire.
+            notEqual: <strong>Warning!</strong> Vérifier confirmation mot de passe.
+        label: Mot de passe
+button:
+    connection:
+        label: Connexion

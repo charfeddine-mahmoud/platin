@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    César - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="body" ng-app="front">
+        <div ng-controller="GlobalController" ng-view>
+        </div>
+    </div>
+{% endblock %}

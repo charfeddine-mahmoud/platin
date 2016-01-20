@@ -1,0 +1,22 @@
+<script type="text/javascript">
+    if (typeof currentUrl === 'undefined')
+    {
+        window.location = '/#login';
+    }
+</script>
+<br>
+{% if error %}
+    <div class="alert alert-danger">{{ error.message }}</div>
+{% endif %}
+
+<form action="{{ path('login_check') }}" method="post">
+    <div class="input-group input-group-lg">
+        <input style="text-align:center;" type="text" class="form-control" placeholder="{{ 'form.email.label'|trans({}, 'messages', user_locale) }}" name="_username" value="{{ last_username }}"/>
+    </div>
+    <div class="input-group input-group-lg">
+        <input style="text-align:center;" type="password" class="form-control" name="_password" placeholder="{{ 'form.password.label'|trans({}, 'messages', user_locale) }}"/>
+    </div>
+    <div class="input-group input-group-lg">
+        <button class="btnSubmit" type="submit" >{{ 'button.connection.label'|trans({}, 'messages', user_locale) }}</button>
+    </div>
+</form>

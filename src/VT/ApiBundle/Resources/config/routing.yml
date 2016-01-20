@@ -1,0 +1,24 @@
+# vt_api_auth:
+#     pattern:  /auth.{_format}
+#     defaults: { _controller: ApiBundle:Auth:auth, _format: ~ }
+#     methods:  [POST]
+
+# vt_api_logout:
+#     pattern:  /logout.{_format}
+#     defaults: { _controller: ApiBundle:Auth:logout, _format: ~ }
+#     methods:  [GET]
+
+# vt_api_get_user_data:
+#     pattern:  /user.{_format}
+#     defaults: { _controller: ApiBundle:User:getUser, _format: ~ }
+#     methods:  [GET]
+
+vt_api_angular:
+    path:     /
+    defaults: { _controller: ApiBundle:Welcome:angular }
+
+ard_backend_checkout:
+    path:     /checkout
+    defaults: { _controller: ApiBundle:Welcome:checkout }
+    options:
+        expose: true

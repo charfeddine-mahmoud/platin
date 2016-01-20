@@ -1,0 +1,71 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: sha512
+        VT\ApiBundle\Entity\Admin: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_MANAGER, ROLE_ALLOWED_TO_SWITCH]
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        vt_users:
+          entity: { class: ApiBundle:User, property: fbId }
+        vt_admins:
+          entity:  { class: ApiBundle:Admin, property: email }
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        api_translate:
+            host: '%api_subdomain%.%domain%'
+            pattern: ^/translate$
+            stateless: true
+            security: false
+
+        api_area:
+            host: '%api_subdomain%.%domain%'
+            pattern: ^/
+            stateless: true
+            simple_preauth:
+                  authenticator: vt_api.apikey_authenticator
+            provider: vt_users
+
+        admin:
+            host: '%admin_subdomain%.%domain%'
+            pattern:   ^/
+            anonymous: true
+            provider:  vt_admins
+            form_login:
+                always_use_default_target_path: true
+                default_target_path: /
+                login_path: login
+                check_path: login_check
+                # success_handler: ard.security.authentication_handler
+                # failure_handler: ard.security.authentication_handler
+            logout:
+                path:   logout
+                target: /
+
+        admin_public:
+            host: '%admin_subdomain%.%domain%'
+            pattern: ^/login
+            stateless: false
+            security: false
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        # - { path: ^/cron$, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+        - { host: '%api_subdomain%.%domain%', requires_channel: http, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { host: '%admin_subdomain%.%domain%', requires_channel: http, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -1,0 +1,112 @@
+<script type="text/javascript">
+    if (typeof currentUrl === 'undefined')
+    {
+        window.location = '/#/';
+    }
+</script>
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+                <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+                <div class="mdl-layout__header-row">
+        <!--           <span class="mdl-layout-title">Home</span> -->
+                  
+                  <div class="mdl-layout-spacer"></div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                      <i class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                      <input class="mdl-textfield__input" type="text" id="search">
+                      <label class="mdl-textfield__label" for="search">Enter your query...</label>
+                    </div>
+                  </div>
+                    <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="/logout"><i class="material-icons">power_settings_new</i></a>
+                 </div>
+                </header>
+              <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-800 mdl-color-text--blue-grey-50">
+                <header class="demo-drawer-header" style="height: auto;">
+                <img src="{{ asset('bundles/api/images/logo-cezar.png') }}" height="125px" width="125px">
+                        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-900">
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-200 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/sandw_incc.png') }}" width="45" height="41"></i>Sandwich</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/assiette_i2.png') }}" width="44" height="35"></i>Asiette</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/hamberger.png') }}" width="42" height="35"></i>Hamburger</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/frit2.png') }}" width="37" height="42"></i>Barquette</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/pilon.png') }}" width="40" height="36"></i>Poulet</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/boisson_g.png') }}" width="37" height="42"></i>Boisson</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/donot2.png') }}" width="40" height="27"></i>Dessert</a>
+          <div class="mdl-layout-spacer"></div>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid"> <!-- start content 1 -->
+          <!--div class="mdl-layout__tab-bar mdl-js-ripple-effect"-->
+          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col">
+                    
+           <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar">
+                <a href="#choix" class="mdl-tabs__tab is-active">Choix</a>
+                <a href="#sauce" class="mdl-tabs__tab">Sauce</a>
+                <a href="#viande" class="mdl-tabs__tab">Viande</a>
+                <a href="#supp" class="mdl-tabs__tab">Suppl&eacute;ment</a>
+            </div>
+          
+            <div class="mdl-tabs__panel is-active" id="choix">
+                              <div class="mdl-grid"><!--   --no-spacing  -->
+                  <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">tacos</button></div>
+                  <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">kebab</button></div>
+                  <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ">cesar</button></div>
+              <!--<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Tacos</button></div>-->
+            </div>
+            </div>
+                <div class="mdl-tabs__panel" id="sauce">
+                    <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Algérienne</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Ketchup</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">blanche</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Mayonnaise</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Tartare</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Barbecue</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Burger</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Andalouse</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Curry</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cheezy</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Fish</button></div>
+                    
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Samouraï</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Marocaine</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Moutarde</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Harissa</button></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Tunisienne</button></div>
+                    </div>
+    
+               </div>
+            <div class="mdl-tabs__panel" id="viande">
+              <ul>
+                <li>escargots</li>
+                <li>grenouille</li>
+              </ul>
+            </div>
+            <div class="mdl-tabs__panel" id="supp">
+              <p>plus de frites :D</p>
+            </div>
+            
+          </div>
+                  </div><!-- end content 1 -->
+          
+          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--3-col ">
+            <p>Content c</p>
+          </div>
+          
+          
+          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--3-col mdl-layout--large-screen-only">
+            <p>Content d</p>
+          </div>
+          <!--<div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+            
+            <div class="demo-separator mdl-cell--1-col"></div>
+            
+          </div>-->
+        </div>
+      </main>
+    </div>
