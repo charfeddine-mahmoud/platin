@@ -1,10 +1,11 @@
 #!/bin/bash
 # un commentaire
+current=${PWD##*/} 
 echo "Process begin ..."
 cd ..
 echo "Permission ..."
-sudo chmod -R 777 checkout
-cd checkout
+sudo chmod -R 777 $current
+cd $current
 echo "sudo rm -rf app/cache/*"
 sudo rm -rf app/cache/*
 echo "sudo php app/console assets:install --symlink"
@@ -18,8 +19,8 @@ sudo php app/console cache:clear --env=dev
 echo "sudo php composer.phar dump-autoload --optimize"
 sudo php composer.phar dump-autoload --optimize
 cd ..
-sudo chmod -R 777 checkout
-cd checkout
+sudo chmod -R 777 $current
+cd $current
 echo "Process end ..."
 
 
