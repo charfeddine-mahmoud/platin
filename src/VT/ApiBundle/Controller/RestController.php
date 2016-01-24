@@ -44,25 +44,6 @@ abstract class RestController extends FOSRestController {
     }
 
     /**
-     * Return the current apiTokenEntity
-     *
-     * @return \VT\ApiBundle\Entity\ApiToken
-     */
-    protected function getApiToken() {
-        return $this->getToken()->getApiToken();
-    }
-
-    /**
-     * Return the current token from the security context.
-     * ! This is not the apiTokenEntity ;)
-     *
-     * @return mixed
-     */
-    protected function getToken() {
-        return $this->container->get('security.context')->getToken();
-    }
-
-    /**
      * Get the statusCode (int) from the VTExceptionInterface $status
      *
      * @param VTExceptionInterface $status
@@ -115,9 +96,8 @@ abstract class RestController extends FOSRestController {
      * @return string locale of the current logged in user
      */
     protected function getLocale() {
-        $dataTokenUnserialized = unserialize($this->getApiToken()->getData());
 
-        return isset($dataTokenUnserialized['locale']) ? $dataTokenUnserialized['locale'] : 'en_US';
+        return 'fr_FR';
     }
 
 }

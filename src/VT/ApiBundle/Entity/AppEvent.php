@@ -56,12 +56,6 @@ class AppEvent
      */
     private $location;
 
-    /**
-     * @var \VT\ApiBundle\Entity\ApiToken
-     * @ORM\ManyToOne(targetEntity="\VT\ApiBundle\Entity\ApiToken", inversedBy="appEvents")
-     * @ORM\JoinColumn(name="appevent_apitokenId", referencedColumnName="apitokenId")
-     */
-    private $apiToken;
 
     /**
      * @var \VT\ApiBundle\Entity\User
@@ -181,30 +175,6 @@ class AppEvent
     public function getLocation()
     {
         return $this->location;
-    }
-
-    /**
-     * Set apiToken
-     *
-     * @param \VT\ApiBundle\Entity\ApiToken $apiToken
-     *
-     * @return AppEvent
-     */
-    public function setApiToken(\VT\ApiBundle\Entity\ApiToken $apiToken = null)
-    {
-        $this->apiToken = $apiToken;
-
-        return $this;
-    }
-
-    /**
-     * Get apiToken
-     *
-     * @return \VT\ApiBundle\Entity\ApiToken
-     */
-    public function getApiToken()
-    {
-        return $this->apiToken;
     }
 
     /**

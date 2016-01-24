@@ -1,12 +1,3 @@
 parameters:
-  vt_api.rest_controller.args: security.token_storage
 
 services:
-
-  vt_api.apikey_user_provider:
-    class:     VT\ApiBundle\Security\ApiKeyUserProvider
-    arguments: ["@=service('doctrine.orm.default_entity_manager').getRepository('ApiBundle:User')"]
-
-  vt_api.apikey_authenticator:
-    class:     VT\ApiBundle\Security\ApiKeyAuthenticator
-    arguments: ["@vt_api.apikey_user_provider", "@=service('doctrine.orm.default_entity_manager').getRepository('ApiBundle:User')", "@=service('doctrine.orm.default_entity_manager').getRepository('ApiBundle:ApiToken')", "@doctrine.orm.entity_manager", "@session", @service_container]

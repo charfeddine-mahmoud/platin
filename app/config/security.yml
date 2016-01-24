@@ -28,14 +28,6 @@ security:
             stateless: true
             security: false
 
-        api_area:
-            host: '%api_subdomain%.%domain%'
-            pattern: ^/
-            stateless: true
-            simple_preauth:
-                  authenticator: vt_api.apikey_authenticator
-            provider: vt_users
-
         admin:
             host: '%admin_subdomain%.%domain%'
             pattern:   ^/
