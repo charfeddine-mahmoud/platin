@@ -50,6 +50,13 @@ class Product
     private $additional;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="productMenu", type="boolean", options={"unsigned"=true,"default" = 1}, nullable=false)
+     */
+    private $menu;
+
+    /**
      * @var \VT\ApiBundle\Entity\Type
      * @ORM\ManyToOne(targetEntity="\VT\ApiBundle\Entity\Type")
      * @ORM\JoinColumn(name="product_typeId", referencedColumnName="typeId")
@@ -62,6 +69,13 @@ class Product
      * @ORM\Column(name="productPrice", type="float", nullable=false)
      */
     private $price;
+
+    /**
+     * @var \VT\ApiBundle\Entity\Image
+     * @ORM\ManyToOne(targetEntity="\VT\ApiBundle\Entity\Image")
+     * @ORM\JoinColumn(name="product_imageId", referencedColumnName="imageId")
+     */
+    private $image;
 
 
     /**
@@ -217,5 +231,52 @@ class Product
     {
         return $this->price;
     }
-}
 
+    /**
+     * Set menu
+     *
+     * @param boolean $menu
+     *
+     * @return Product
+     */
+    public function setMenu($menu)
+    {
+        $this->menu = $menu;
+
+        return $this;
+    }
+
+    /**
+     * Get menu
+     *
+     * @return boolean
+     */
+    public function getMenu()
+    {
+        return $this->menu;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \VT\ApiBundle\Entity\Image $image
+     *
+     * @return Product
+     */
+    public function setImage(\VT\ApiBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \VT\ApiBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+}

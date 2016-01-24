@@ -24,23 +24,16 @@ class Menu
     /**
      * @var \VT\ApiBundle\Entity\Product
      * @ORM\ManyToOne(targetEntity="\VT\ApiBundle\Entity\Product")
-     * @ORM\JoinColumn(name="menu_entryId", referencedColumnName="productId")
+     * @ORM\JoinColumn(name="menu_productId", referencedColumnName="productId")
      */
-    private $entry;
+    private $product;
 
     /**
-     * @var \VT\ApiBundle\Entity\Product
-     * @ORM\ManyToOne(targetEntity="\VT\ApiBundle\Entity\Product")
-     * @ORM\JoinColumn(name="menu_mainCourseId", referencedColumnName="productId")
+     * @var boolean
+     *
+     * @ORM\Column(name="menuActive", type="boolean", options={"unsigned"=true,"default" = 1}, nullable=false)
      */
-    private $mainCourse;
-
-    /**
-     * @var \VT\ApiBundle\Entity\Product
-     * @ORM\ManyToOne(targetEntity="\VT\ApiBundle\Entity\Product")
-     * @ORM\JoinColumn(name="menu_dessertId", referencedColumnName="productId")
-     */
-    private $dessert;
+    private $active;
 
 
     /**
@@ -53,76 +46,52 @@ class Menu
         return $this->id;
     }
 
+
     /**
-     * Set entry
+     * Set active
      *
-     * @param integer $entry
+     * @param boolean $active
      *
      * @return Menu
      */
-    public function setEntry($entry)
+    public function setActive($active)
     {
-        $this->entry = $entry;
+        $this->active = $active;
 
         return $this;
     }
 
     /**
-     * Get entry
+     * Get active
      *
-     * @return integer
+     * @return boolean
      */
-    public function getEntry()
+    public function getActive()
     {
-        return $this->entry;
+        return $this->active;
     }
 
     /**
-     * Set mainCourse
+     * Set product
      *
-     * @param integer $mainCourse
+     * @param \VT\ApiBundle\Entity\Product $product
      *
      * @return Menu
      */
-    public function setMainCourse($mainCourse)
+    public function setProduct(\VT\ApiBundle\Entity\Product $product = null)
     {
-        $this->mainCourse = $mainCourse;
+        $this->product = $product;
 
         return $this;
     }
 
     /**
-     * Get mainCourse
+     * Get product
      *
-     * @return integer
+     * @return \VT\ApiBundle\Entity\Product
      */
-    public function getMainCourse()
+    public function getProduct()
     {
-        return $this->mainCourse;
-    }
-
-    /**
-     * Set dessert
-     *
-     * @param integer $dessert
-     *
-     * @return Menu
-     */
-    public function setDessert($dessert)
-    {
-        $this->dessert = $dessert;
-
-        return $this;
-    }
-
-    /**
-     * Get dessert
-     *
-     * @return integer
-     */
-    public function getDessert()
-    {
-        return $this->dessert;
+        return $this->product;
     }
 }
-

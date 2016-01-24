@@ -28,6 +28,13 @@ class Sauce
      */
     private $name;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sauceActive", type="boolean", options={"unsigned"=true,"default" = 1}, nullable=false)
+     */
+    private $active;
+
 
     /**
      * Get id
@@ -62,5 +69,28 @@ class Sauce
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Sauce
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+}

@@ -28,6 +28,13 @@ class Meat
      */
     private $name;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="meatActive", type="boolean", options={"unsigned"=true,"default" = 1}, nullable=false)
+     */
+    private $active;
+
 
     /**
      * Get id
@@ -62,5 +69,28 @@ class Meat
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Meat
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+}
