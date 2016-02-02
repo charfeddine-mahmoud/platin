@@ -1,0 +1,128 @@
+<script type="text/javascript">
+    if (typeof currentUrl === 'undefined')
+    {
+        window.location = '/#/roomTeachers/filing';
+    }
+</script>
+<div class="row" id="title">
+      <h1 style="padding-left: 2%;padding-bottom: 5%;">Boîte à outils pratique - Déposer un support de cours</h1>
+</div>
+<div flash-message="5000" ></div>
+        <div class="row text-center">
+
+            <div class="col-md-4 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <video width="300" height="250" controls="controls">
+                      <source src="{{ asset('bundles/api/video/chaine.mp4') }}" type="video/mp4" />
+                      <source src="{{ asset('bundles/api/video/chaine.webm') }}" type="video/webm" />
+                      <source src="{{ asset('bundles/api/video/chaine.ogv') }}" type="video/ogg" />
+                    </video>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <form action="" method="post" ng-controller="FilingController">
+                    <div class="form-group">
+                      <label for="filename">Nom du fichier</label>
+                      <input type="text" class="form-control" ng-model="fileName" placeholder="Nom du fichier">
+                    </div>
+                    <div >
+                        <div class="row">
+                            <div class="span6">
+                                <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+                                    ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true">Glisser votre fichier ici ou cliquer pour déposer</div>
+                                <div ngf-no-file-drop>Glisser/Déposer n'est pas supporté par ce navigateur</div>
+                            </div>
+                        </div>
+                      {% verbatim %}
+                        <div class="sel-file ng-binding ng-scope" ng-repeat="f in files">
+                            <table>
+                                <tr>
+                                    <td class="col-sm-12">
+                                        <progressbar ng-show="progressBar" class="progress-striped active" max="100" value="f.progress" type="danger">
+                                            <i>{{f.progress}}%</i>
+                                        </progressbar>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" ng-click="f.upload.abort();f.upload.aborted=true"
+                                              ng-show="f.upload != null && f.progress < 100 && !f.upload.aborted">Abort
+                                        </button>
+                                        <span ng-show="fileData"> {{f.name}} - size: {{f.size}}B - type: {{f.type}}</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div ng-show="fileAdded">
+                          <br />
+                          <span class="categoryItem">Votre fichier a été ajouté <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteImage(imageId)"><i class="glyphicon glyphicon-remove"></i></a></span>
+                          <br /> <br />
+                        </div>
+                        <input type="hidden" ng-model="imageId"></input>
+                      {% endverbatim %}
+                  </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Etiquette public</label>
+                      <input class="form-control" typeahead-on-select="addNewSelectedPublicCategory($item)" my-enter="addPublic()" typeahead="category.categoryName for category in publicCategories | filter:$viewValue" ng-model="tagPublic" ng-blur="" placeholder="Etiquette"></input>
+                      <br />
+                      <div ng-repeat="categorySelected in publicCategoriesSelected">
+                        <span class="categoryItem">
+                          {% verbatim %} {{categorySelected.categoryName}} {% endverbatim %}
+                            <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deletePublicCategory($index)"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                        <br /><br />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Etiquette niveau</label>
+                      <input class="form-control" typeahead-on-select="addNewSelectedNiveauCategory($item)" my-enter="addNiveau()" typeahead="category.categoryName for category in niveauCategories | filter:$viewValue" ng-model="tagNiveau" ng-blur="" placeholder="Etiquette"></input>
+                      <br />
+                      <div ng-repeat="categorySelected in niveauCategoriesSelected">
+                        <span class="categoryItem">
+                          {% verbatim %} {{categorySelected.categoryName}} {% endverbatim %}
+                            <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteNiveauCategory($index)"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                        <br /><br />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Etiquette thème</label>
+                      <input class="form-control" typeahead-on-select="addNewSelectedThemeCategory($item)" my-enter="addTheme()" typeahead="category.categoryName for category in themeCategories | filter:$viewValue" ng-model="tagTheme" ng-blur="" placeholder="Etiquette"></input>
+                      <br />
+                      <div ng-repeat="categorySelected in themeCategoriesSelected">
+                        <span class="categoryItem">
+                          {% verbatim %} {{categorySelected.categoryName}} {% endverbatim %}
+                            <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteThemeCategory($index)"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                        <br /><br />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Etiquette objectif</label>
+                      <input class="form-control" typeahead-on-select="addNewSelectedObjectifCategory($item)" my-enter="addObjectif()" typeahead="category.categoryName for category in objectifCategories | filter:$viewValue" ng-model="tagObjectif" ng-blur="" placeholder="Etiquette"></input>
+                      <br />
+                      <div ng-repeat="categorySelected in objectifCategoriesSelected">
+                        <span class="categoryItem">
+                          {% verbatim %} {{categorySelected.categoryName}} {% endverbatim %}
+                            <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteObjectifCategory($index)"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                        <br /><br />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Etiquette autre</label>
+                      <input class="form-control" typeahead-on-select="addNewSelectedAutreCategory($item)" my-enter="addAutre()" typeahead="category.categoryName for category in autreCategories | filter:$viewValue" ng-model="tagAutre" ng-blur="" placeholder="Etiquette"></input>
+                      <br />
+                      <div ng-repeat="categorySelected in autreCategoriesSelected">
+                        <span class="categoryItem">
+                          {% verbatim %} {{categorySelected.categoryName}} {% endverbatim %}
+                            <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteAutreCategory($index)"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                        <br /><br />
+                      </div>
+                    </div>
+                    <button ng-click="processNewFileForm()" type="button" class="btn btn-default">Ajouter</button>
+                  </form>
+                </div>
+            </div>
+        </div>

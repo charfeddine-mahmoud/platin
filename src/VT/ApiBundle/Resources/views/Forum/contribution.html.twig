@@ -1,0 +1,92 @@
+<script type="text/javascript">
+    if (typeof currentUrl === 'undefined')
+    {
+        window.location = '/#/';
+    }
+</script>
+<div class="row" id="title">
+      <h1 style="padding-left: 2%;padding-bottom: 5%;">Sujet - {% verbatim %}{{subject.name}} ({{subject.messages}} {{subject.text}}){% endverbatim %}</h1>
+</div>
+<div flash-message="5000" ></div>
+<div class="row">
+    <a class="btn" id="productlabel" href="/roomTeachers/forum"><i class="glyphicon glyphicon-circle-arrow-left"></i> Retourner à la page des sujets</a>
+    <a class="btn" id="productlabel" ng-click="addNewContribution = !addNewContribution;"><i class="glyphicon glyphicon-plus"></i> Ajouter une nouvelle contribution</a>
+    <br /> 
+</div>
+<div class="row">
+    
+   <br />
+    <form action="" method="post" ng-submit="processAddContribution()" ng-show="addNewContribution"> 
+            <p style="text-align:center;">
+              <video id="preview" controls style="border: 1px solid rgb(15, 158, 238); height: 240px; width: 320px;"></video>
+            </p>
+            <li id="label">Informations supplémentaires</li>
+            <br />
+            <textarea style="width: 40%;" class="form-control" rows="4" cols="30" placeholder="liens, etc." ng-model="infos"></textarea>
+            <hr />
+            <button type="button" class="btnCanceled" id="record">S'enregistrer</button>
+            <button type="button" class="btnValidate" id="stop" disabled>Déposer</button>
+            <div id="container" style="padding:1em 2em;"></div>
+            <br /><br />
+    </form>
+</div>
+<div class="row">
+</div>
+            <div class="col-md-2">
+                <select ng-model="entryLimit" class="form-control">
+                    <option>5</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="text" ng-model="search" ng-change="filter()" placeholder="Rechercher" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                {% verbatim %}
+                    <h5 id="valueName" >{{ filtered.length }} / {{ totalItems}}</h5>
+                {% endverbatim %}
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-md-12" ng-show="filteredItems > 0">
+                <table class="table">
+                    <tr>
+                        <th id="valueName" style="width: 20%; text-align: center;"></th>
+                        <th id="valueName" style="width: 40%; text-align: center;"></th>
+                        <th id="valueName" style="width: 30%; text-align: center;"></th>
+                        <th id="valueName" style="width: 10%; text-align: center;"></th>
+                    </tr>
+                    {% verbatim %}
+                        <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                            <td style="text-align: center; vertical-align: middle;">
+                                <span style="font-weight: bold; color: #1290D0;">Déposé par {{data.user}}</span><br />
+                                <span style="font-size: x-small;">Le {{data.date}} à {{data.time}}</span>
+                                <br />
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">     
+                                <video ng-src="{{data.video}}" width="220" height="220"  controls="controls"></video></span><br />
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">     
+                                {{data.infos}}
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <a ng-show="data.owner" class="btn btn-danger noty" ng-really-message="Vous voulez vraiment supprimer ? " ng-really-click="deleteContribution(data.contributionId)"><span class="glyphicon glyphicon-remove"></span></a>
+                            </td>
+                        </tr>
+                    {% endverbatim %}
+                </table>
+            </div>
+            <div class="col-md-12" ng-show="filteredItems == 0">
+                <div class="col-md-12">
+                    <h4 id="valueName" >Pas des données trouvées</h4>
+                </div>
+            </div>
+            <div class="col-md-12" ng-show="filteredItems > 0">
+                <pagination class="pagination-small" ng-model="currentPage" total-items="filteredItems" max-size="entryLimit"  boundary-links="true">
+                </pagination>
+            </div>
+        </div>

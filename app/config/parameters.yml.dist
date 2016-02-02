@@ -5,7 +5,7 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: checkout
+    database_name: platin
     database_user: root
     database_password: root
     mailer_transport: smtp
@@ -13,9 +13,10 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
-    domain: checkout.dev
+    domain: platin.dev
     api_subdomain: api
     admin_subdomain: admin
+    host: www.platin.dev
     locale: fr
 
     # A secret key that's used to generate certain security-related tokens

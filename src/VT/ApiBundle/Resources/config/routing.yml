@@ -18,7 +18,227 @@ vt_api_angular:
     defaults: { _controller: ApiBundle:Welcome:angular }
 
 ard_backend_checkout:
-    path:     /checkout
+    path:     /roomTeachers
     defaults: { _controller: ApiBundle:Welcome:checkout }
+    options:
+        expose: true
+
+ard_backend_profile:
+    path:     /profile
+    defaults: { _controller: ApiBundle:Welcome:profile }
+    options:
+        expose: true
+
+platin_backend_professors:
+    path:     /professors
+    defaults: { _controller: ApiBundle:Welcome:professors }
+    options:
+        expose: true
+
+platin_set_data_user:
+    path:     /ajax/update/user/.{_format}
+    defaults: { _controller: ApiBundle:User:updateUserData, _format: ~ }
+    methods:  [POST]
+    options:
+        expose: true
+
+platin_add_new_user:
+    path:     /ajax/add/user/.{_format}
+    defaults: { _controller: ApiBundle:User:addUserData, _format: ~ }
+    methods:  [POST]
+    options:
+        expose: true
+
+# innova_platin_page_accueil_Connecter:
+#     path:  /roomTeachers
+#     defaults: { _controller: ApiBundle:Welcome:welcome }
+#     options:
+#         expose: true
+
+innova_platin_page_depot_document:
+    path:  /roomTeachers/filing
+    defaults: { _controller: ApiBundle:Welcome:filing }
+    options:
+        expose: true
+
+innova_platin_page_support:
+    path:  /roomTeachers/support
+    defaults: { _controller: ApiBundle:Welcome:support }
+    options:
+        expose: true
+
+innova_platin_page_contribution:
+    path:     /roomTeachers/contribution/subject
+    defaults: { _controller: ApiBundle:Welcome:contributionSubject }
+    options:
+        expose: true
+
+innova_platin_page_forum:
+    path:  /roomTeachers/forum
+    defaults: { _controller: ApiBundle:Welcome:forum }
+    options:
+        expose: true
+
+platin_post_photo:
+    path:     /ajax/add/File
+    defaults: { _controller: ApiBundle:Photo:addFile, _format: ~ }
+    methods:  [POST]
+    options:
+        expose: true
+
+platin_update_user:
+    path:     /ajax/update/user
+    defaults: { _controller: ApiBundle:User:updateUser, _format: ~ }
+    methods:  [POST]
+    options:
+        expose: true
+
+platin_get_subject_data:
+    path:     /ajax/subject/{subject}.{_format}
+    defaults: { _controller: ApiBundle:Categorie:getSubjectData, _format: ~ }
+    methods:  [GET]
+    requirements:
+        subject:  \d+
+    options:
+        expose: true
+
+platin_get_user:
+    path:     /ajax/user/{user}.{_format}
+    defaults: { _controller: ApiBundle:User:getUserData, _format: ~ }
+    methods:  [GET]
+    requirements:
+        user:  \d+
+    options:
+        expose: true
+
+platin_delete_file:
+    path:     /ajax/file/delete/{imageId}.{_format}
+    defaults: { _controller: ApiBundle:Photo:deleteFile, _format: ~ }
+    methods:  [GET]
+    requirements:
+        imageId:  \d+
+    options:
+        expose: true
+
+platin_delete_contribution:
+    path:     /ajax/delete/contribution/{contribution}.{_format}
+    defaults: { _controller: ApiBundle:Categorie:deleteContribution, _format: ~ }
+    methods:  [GET]
+    requirements:
+        contribution:  \d+
+    options:
+        expose: true
+
+platin_get_file:
+    path:     /ajax/file/get/{file}.{_format}
+    defaults: { _controller: ApiBundle:Categorie:downloadFile, _format: ~ }
+    methods:  [GET]
+    requirements:
+        file:  \d+
+    options:
+        expose: true
+
+platin_get_categories_public:
+    path:     /ajax/categories/public
+    defaults: { _controller: ApiBundle:Categorie:getCategoriesPublic, _format: ~  }
+    methods:  [GET]
+    options:
+        expose: true
+
+platin_get_professors:
+    path:     /ajax/professors
+    defaults: { _controller: ApiBundle:User:getProfessors, _format: ~  }
+    methods:  [GET]
+    options:
+        expose: true
+
+platin_get_categories_theme:
+    path:     /ajax/categories/theme
+    defaults: { _controller: ApiBundle:Categorie:getCategoriesTheme, _format: ~  }
+    methods:  [GET]
+    options:
+        expose: true
+
+platin_get_categories_niveau:
+    path:     /ajax/categories/niveau
+    defaults: { _controller: ApiBundle:Categorie:getCategoriesNiveau, _format: ~  }
+    methods:  [GET]
+    options:
+        expose: true
+
+platin_get_categories_objectif:
+    path:     /ajax/categories/objectif
+    defaults: { _controller: ApiBundle:Categorie:getCategoriesObjectif, _format: ~  }
+    methods:  [GET]
+    options:
+        expose: true
+
+platin_get_categories_autre:
+    path:     /ajax/categories/autre
+    defaults: { _controller: ApiBundle:Categorie:getCategoriesAutre, _format: ~  }
+    methods:  [GET]
+    options:
+        expose: true
+
+platin_get_files:
+    path:     /ajax/files
+    defaults: { _controller: ApiBundle:Categorie:getSupport, _format: ~  }
+    methods:  [GET]
+    options:
+        expose: true
+
+platin_get_subjects:
+    path:     /ajax/subjects
+    defaults: { _controller: ApiBundle:Categorie:getSubjects, _format: ~  }
+    methods:  [GET]
+    options:
+        expose: true
+
+platin_get_contributions:
+    path:     /ajax/contributions/subject/{subject}
+    defaults: { _controller: ApiBundle:Categorie:getContributions, _format: ~  }
+    methods:  [GET]
+    requirements:
+        subject:  \d+
+    options:
+        expose: true
+
+ard_post_file_data:
+    path:     /ajax/add/file/data
+    defaults: { _controller: ApiBundle:Categorie:addFileData, _format: ~ }
+    methods:  [POST]
+    options:
+        expose: true
+
+platin_add_subject:
+    path:     /ajax/add/subject/data
+    defaults: { _controller: ApiBundle:Categorie:addSubjectData, _format: ~ }
+    methods:  [POST]
+    options:
+        expose: true
+
+platin_post_tags:
+    path:     /ajax/add/tag
+    defaults: { _controller: ApiBundle:Categorie:addTag, _format: ~ }
+    methods:  [POST]
+    options:
+        expose: true
+
+innova_platin_page_recuperer_document_download:
+    path:  /roomTeachers/recovery/download/{id}
+    defaults: { _controller: ApiBundle:Categorie:recoverydownload }
+    requirements:
+        id:  \d+
+
+innova_platin_upload:
+    pattern:  /roomTeachers/contribution/add/video
+    defaults: { _controller:ApiBundle:Ajax:upload}
+    options:
+        expose: true
+
+platin_data_of_client:
+    path:     /ajax/user/.{_format}
+    defaults: { _controller: ApiBundle:User:user, _format: ~ }
+    methods:  [GET]
     options:
         expose: true

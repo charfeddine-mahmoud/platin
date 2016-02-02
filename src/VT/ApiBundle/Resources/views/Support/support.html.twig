@@ -1,0 +1,97 @@
+<script type="text/javascript">
+    if (typeof currentUrl === 'undefined')
+    {
+        window.location = '/#/roomTeachers/support';
+    }
+</script>
+<div class="row" id="title">
+      <h1 style="padding-left: 2%;padding-bottom: 5%;">Boîte à outils pratique - Voir les supports accessibles</h1>
+</div>
+<div flash-message="5000" ></div>
+<div class="row">
+            <div class="col-md-2">
+                <select ng-model="entryLimit" class="form-control">
+                    <option>5</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="text" ng-model="search" ng-change="filter()" placeholder="Recherche" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                {% verbatim %}
+                    <h5 id="valueName" >{{ filtered.length }} / {{ totalItems}}</h5>
+                {% endverbatim %}
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-md-12" ng-show="filteredItems > 0">
+                <table class="table">
+                    <tr>
+                        <th id="valueName" style="width: 9%; text-align: center;">Info<br /> <a ng-click="sort_by('name');"> <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <th id="valueName" style="width: 14%; text-align: center;">Etiquette public</th>
+                        <th id="valueName" style="width: 15%; text-align: center;">Etiquette niveau</th>
+                        <th id="valueName" style="width: 15%; text-align: center;">Etiquette theme</th>
+                        <th id="valueName" style="width: 15%; text-align: center;">Etiquette objectif</th>
+                        <th id="valueName" style="width: 14%; text-align: center;">Etiquette autre</th>
+                        <th id="valueName" style="width: 8%; text-align: center;">Partager avec</th>
+                        <th id="valueName" style="width: 9%; text-align: center;">Action</th>
+                    </tr>
+                    {% verbatim %}
+                        <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                            <td style="text-align: center; vertical-align: middle;">
+                                {{data.name}} <br />
+                                <span style="color: #1290D0;">le {{data.date}} </span><br /> 
+                                <span style="font-size: small;">à {{data.time}} </span> <br />
+                                <span style="font-size: small; color: #1290D0;">par {{data.user}}</span>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <ul ng-repeat="category in data.categoriesPublic">
+                                  <br/><span class="categoryPublicItem">{{category}}</span><br/><br/>
+                                </ul>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <ul ng-repeat="category in data.categoriesNiveau">
+                                  <br/><span class="categoryNiveauItem">{{category}}</span><br/><br/>
+                                </ul>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <ul ng-repeat="category in data.categoriesTheme">
+                                  <br/><span class="categoryThemeItem">{{category}}</span><br/><br/>
+                                </ul>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <ul ng-repeat="category in data.categoriesObjectif">
+                                  <br/><span class="categoryObjectifItem">{{category}}</span><br/><br/>
+                                </ul>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <ul ng-repeat="category in data.categoriesAutre">
+                                  <br/><span class="categoryAutreItem">{{category}}</span><br/><br/>
+                                </ul>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <b> A suivre </b>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                              <a ng-show="data.owner" class="btn btn-danger noty" ng-really-message="Vous voulez vraiment supprimer ? " ng-really-click="deleteImage(data.fileId)"><span class="glyphicon glyphicon-remove"></span></a>
+                    {% endverbatim %}
+                                <a class="btn btn-warning noty" ng-click="downloadData(data.fileId)"><i class="glyphicon glyphicon-download-alt"></i></a>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+            <div class="col-md-12" ng-show="filteredItems == 0">
+                <div class="col-md-12">
+                    <h4 id="valueName" >Pas des données trouvées</h4>
+                </div>
+            </div>
+            <div class="col-md-12" ng-show="filteredItems > 0">
+                <pagination class="pagination-small" ng-model="currentPage" total-items="filteredItems" max-size="entryLimit"  boundary-links="true">
+                </pagination>
+            </div>
+        </div>

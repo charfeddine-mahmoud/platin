@@ -6,53 +6,49 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <base href="/">
         <title>
-            {% block title %}Cezar food{% endblock %}
+            {% block title %}Platin{% endblock %}
         </title>
-        <!-- Add to homescreen for Chrome on Android -->
-        <meta name="mobile-web-app-capable" content="yes">
-        <link rel="icon" sizes="192x192" href="{{ asset('bundles/api/images/android-desktop.png') }}">
-
-        <!-- Add to homescreen for Safari on iOS -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-        <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/api/images/ios-desktop.png') }}">
-
-        <!-- Tile icon for Win8 (144x144 + tile color) -->
-        <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-        <meta name="msapplication-TileColor" content="#3372DF">
 
         <link rel="shortcut icon" href="{{ asset('bundles/api/images/favicon.png') }}">
         {% block stylesheets %}
-            <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <link rel="stylesheet" href="{{ asset('bundles/api/css/material.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('bundles/api/css/styles.css') }}">
-            <style>
-            #view-source {
-              position: fixed;
-              display: block;
-              right: 0;
-              bottom: 0;
-              margin-right: 40px;
-              margin-bottom: 40px;
-              z-index: 900;
-            }
-            </style>
+            <link rel="stylesheet" href="{{ asset('bundles/api/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/api/css/heroic-features.css') }}">
+            <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+            <link rel="stylesheet" href="{{ asset('bundles/api/font-awesome/css/font-awesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/api/css/form-elements.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/api/css/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/api/css/angular-flash.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('bundles/api/css/ngGallery.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('bundles/api/css/ngActivityIndicator.css') }}"/>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
+            <script type="text/javascript">
+                var currentUrl = true;
+            </script>
             <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
             <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
-            <script src="{{ asset('bundles/api/js/material.min.js') }}"></script>
+                <!-- jQuery -->
+            <script src="{{ asset('bundles/api/js/jquery.js') }}"></script>
+                <!-- Bootstrap Core JavaScript -->
+            <script src="{{ asset('bundles/api/js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('bundles/api/node_modules/angular/angular.min.js') }}"></script>
             <script src="{{ asset('bundles/api/node_modules/angular-route/angular-route.min.js') }}"></script>
             <script src="{{ asset('bundles/api/node_modules/angular-animate/angular-animate.min.js') }}"></script>
             <script src="{{ asset('bundles/api/node_modules/angular-aria/angular-aria.min.js') }}"></script>
             <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-            <script src="{{ asset('bundles/api/node_modules/angular-material/angular-material.min.js') }}"></script>
+            <script src="{{ asset('bundles/api/js/jquery.backstretch.min.js') }}"></script>
+            <script src="{{ asset('bundles/api/js/scripts.js') }}"></script>
+            
+            <script src="{{ asset('bundles/api/js/angular-flash.js') }}"></script>
+            <script src="{{ asset('bundles/api/js/ngActivityIndicator.js') }}"></script>
+            <script src="{{ asset('bundles/api/js/audiodisplay.js') }}"></script>
+            <script src="{{ asset('bundles/api/js/RecordRTC.js') }}"></script>
+            <script src="{{ asset('bundles/api/js/ng-file-upload.js') }}"></script>
+            <script src="{{ asset('bundles/api/js/ui-bootstrap-tpls.js') }}"></script>
+
             <script src="{{ asset('bundles/api/js/controllers.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>

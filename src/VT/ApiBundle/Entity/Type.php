@@ -15,7 +15,7 @@ class Type
     /**
      * @var integer
      *
-     * @ORM\Column(name="typeId", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -24,22 +24,15 @@ class Type
     /**
      * @var string
      *
-     * @ORM\Column(name="typeName", type="string", length=80, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $name;
-
-    /**
-     * @var \VT\ApiBundle\Entity\Image
-     * @ORM\ManyToOne(targetEntity="\VT\ApiBundle\Entity\Image")
-     * @ORM\JoinColumn(name="type_imageId", referencedColumnName="imageId")
-     */
-    private $image;
+    private $nom;
 
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -47,50 +40,25 @@ class Type
     }
 
     /**
-     * Set name
+     * Set nom
      *
-     * @param string $name
-     *
+     * @param string $nom
      * @return Type
      */
-    public function setName($name)
+    public function setNom($nom)
     {
-        $this->name = $name;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get nom
      *
-     * @return string
+     * @return string 
      */
-    public function getName()
+    public function getNom()
     {
-        return $this->name;
-    }
-
-    /**
-     * Set image
-     *
-     * @param \VT\ApiBundle\Entity\Image $image
-     *
-     * @return Type
-     */
-    public function setImage(\VT\ApiBundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \VT\ApiBundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
+        return $this->nom;
     }
 }

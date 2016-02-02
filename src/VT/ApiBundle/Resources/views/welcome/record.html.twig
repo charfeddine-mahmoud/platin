@@ -1,0 +1,53 @@
+<div class="modal hide fade" id="Record">
+    <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
+      <h5>Ajouter une contribution</h5>
+    </div>
+  <div class="modal-body">
+  {# **************************** #}
+      <!DOCTYPE html>
+      <html lang="en">
+          <head>
+              <title></title>
+              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+              <meta charset="utf-8">
+              <!-- script used for audio/video/gif recording -->
+              <script src="{{ asset('bundles/innovaplatin/css/bootstrap/js/RecordRTC.js') }}"></script> 
+              <style>
+                  #record{
+                      height: 35px;
+                  }
+                   #stop{
+                      height: 35px;
+                  }
+                </style>
+          </head>
+
+          <body>
+                <section class="experiment">  
+                    <p style="text-align:center;">
+                      <video id="preview" controls style="border: 1px solid rgb(15, 158, 238); height: 240px; width: 320px;"></video> 
+                    </p>
+                    <hr />
+                    <button class="btn btn-success" id="record">S'enregistrer</button>
+                    <button class="btn btn-danger" id="stop" disabled>Déposer</button>
+
+                    <div id="container" style="padding:1em 2em;"></div>
+                </section>
+                  
+
+            
+            
+              
+              <footer>
+                  <p>
+                    
+                  </p>
+              </footer>
+                    <script src="{{ asset('bundles/innovaplatin/css/bootstrap/js/main.js') }}"></script>        
+          </body>
+      </html>
+    {# **************************** #}
+  </div>
+  <div class="modal-footer"> 
+  </div>
+</div>

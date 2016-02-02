@@ -1,0 +1,143 @@
+<script type="text/javascript">
+    if (typeof currentUrl === 'undefined')
+    {
+        window.location = '/#/professors';
+    }
+</script>
+<div class="row" id="title">
+      <h1 style="padding-bottom: 5%;">Gérer les enseignants</h1>
+</div>
+<div flash-message="5000" ></div>
+<div class="row">
+
+    <div class="col-md-8 col-sm-6">
+       <a class="btn" id="productlabel" ng-click="addProfessor()"><i class="glyphicon glyphicon-plus"></i> Ajouter un nouveau enseignant</a>
+       <br /><br />
+       <div class="row">
+            <div class="col-md-2">
+                <select ng-model="entryLimit" class="form-control">
+                    <option>5</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="text" ng-model="search" ng-change="filter()" placeholder="Recherche" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                {% verbatim %}
+                    <h5 id="valueName" >{{ filtered.length }} / {{ totalItems}}</h5>
+                {% endverbatim %}
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-md-12" ng-show="filteredItems > 0">
+                <table class="table">
+                    <tr>
+                        <th id="valueName" style="width: 10%; text-align: center;">Nom<br /> <a ng-click="sort_by('name');"> <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <th id="valueName" style="width: 10%; text-align: center;">Prénom<br /> <a ng-click="sort_by('date');"> <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <th id="valueName" style="width: 10%; text-align: center;">Email<br /> <a ng-click="sort_by('user');"> <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <th id="valueName" style="width: 15%; text-align: center;">Action</th>
+                    </tr>
+                    {% verbatim %}
+                        <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                            <td style="text-align: center; vertical-align: middle;">
+                                {{data.name}} 
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                {{data.lastname}}
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                {{data.email}}
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                              <!-- <a class="btn btn-danger noty" ng-really-message="Vous voulez vraiment supprimer ? " ng-really-click="deleteUser(data.userId)">
+                                  <span class="glyphicon glyphicon-remove"></span>
+                              </a> -->
+                              <a class="btn btn-warning noty" ng-click="updateProfessorFct(data.userId)">
+                                  <span class="glyphicon glyphicon-pencil"></span>
+                              </a>
+                    {% endverbatim %}
+                            </td>
+                        </tr>
+                </table>
+            </div>
+            <div class="col-md-12" ng-show="filteredItems == 0">
+                <div class="col-md-12">
+                    <h4 id="valueName" >Pas des données trouvées</h4>
+                </div>
+            </div>
+            <div class="col-md-12" ng-show="filteredItems > 0">
+                <pagination class="pagination-small" ng-model="currentPage" total-items="filteredItems" max-size="entryLimit"  boundary-links="true">
+                </pagination>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+      {% verbatim %}
+         <!-- add professor -->
+         <div ng-show="addNewProfessor && !updateProfessor">
+            <form action="" method="post">
+                <div class="form-group">
+                  <label for="filename">Nom</label>
+                  <input type="text" class="form-control" ng-model="name" placeholder="Nom de l'enseignant" required>
+                </div>
+                <div class="form-group">
+                  <label for="filename">Prénom</label>
+                  <input type="text" class="form-control" ng-model="lastname" placeholder="Prénom de l'enseignant" required>
+                </div>
+                <div class="form-group">
+                  <label for="filename">Email</label>
+                  <input type="text" class="form-control" ng-model="email" placeholder="Email de l'enseignant" required>
+                </div>
+                <div class="form-group">
+                  <label for="filename">Téléphone</label>
+                  <input type="text" class="form-control" ng-model="phone" placeholder="Téléphone de l'enseignant" required>
+                </div>
+                <div class="form-group">
+                  <label for="filename">Mot de passe</label>
+                  <input type="password" class="form-control" ng-model="password" placeholder="Mot de passe" required>
+                </div>
+                <div class="form-group">
+                  <label for="filename">Confirmation mot de passe</label>
+                  <input type="password" class="form-control" ng-model="passwordConfirmation" placeholder="Mot de passe" required>
+                </div>
+                <button ng-click="processAddProfessor()" type="button" class="btn btn-default">Ajouter</button>
+            </form>
+         </div>
+         <!-- update professor -->
+         <div ng-show="updateProfessor && !addNewProfessor">
+            <form action="" method="post">
+                <div class="form-group">
+                  <label for="filename">Nom</label>
+                  <input type="text" class="form-control" ng-model="user.name" placeholder="Nom de l'enseignant" required>
+                </div>
+                <div class="form-group">
+                  <label for="filename">Prénom</label>
+                  <input type="text" class="form-control" ng-model="user.lastname" placeholder="Prénom de l'enseignant" required>
+                </div>
+                <div class="form-group">
+                  <label for="filename">Email</label>
+                  <input type="text" class="form-control" ng-model="user.email" placeholder="Email de l'enseignant" required>
+                </div>
+                <div class="form-group">
+                  <label for="filename">Téléphone</label>
+                  <input type="text" class="form-control" ng-model="user.phone" placeholder="Téléphone de l'enseignant" required>
+                </div>
+                <div class="form-group">
+                  <label for="filename">Mot de passe</label>
+                  <input type="password" class="form-control" ng-model="user.password" placeholder="Mot de passe" required>
+                </div>
+                <div class="form-group">
+                  <label for="filename">Confirmation mot de passe</label>
+                  <input type="password" class="form-control" ng-model="user.passwordConfirmation" placeholder="Mot de passe" required>
+                </div>
+                <button ng-click="processUpdateProfessor()" type="button" class="btn btn-default">Mettre à jour</button>
+            </form>
+         </div>
+      {% endverbatim %}
+    </div>
+</div>

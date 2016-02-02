@@ -36,4 +36,60 @@ class WelcomeController extends Controller
         }
         return $this->render('ApiBundle:Checkout:checkout.html.twig', array('user_locale' => $locale));
     }
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function profileAction()
+    {
+        return $this->render('ApiBundle:Account:profile.html.twig');
+    }
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function professorsAction()
+    {
+        return $this->render('ApiBundle:Account:professors.html.twig');
+    }
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function indexAction()
+    {
+        return $this->render('ApiBundle:welcome:index.html.twig');
+    }
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function welcomeAction()
+    {
+        return $this->render('ApiBundle:welcome:indexConnected.html.twig');
+    }
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function filingAction()
+    {
+      return $this->render('ApiBundle:Filing:documentFiling.html.twig');
+    }
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function supportAction()
+    {
+      return $this->render('ApiBundle:Support:support.html.twig');
+    }
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function forumAction()
+    {
+      return $this->render('ApiBundle:Forum:forum.html.twig');
+    }
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function contributionSubjectAction()
+    {
+      return $this->render('ApiBundle:Forum:contribution.html.twig');
+    }
 }

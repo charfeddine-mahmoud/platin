@@ -14,63 +14,70 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface 
 {
-    /**
+     /**
      * @var integer
      *
-     * @ORM\Column(name="userId", type="integer", options={"unsigned"=true})
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="userActive", type="boolean", options={"unsigned"=true,"default" = 1}, nullable=false)
+     * @ORM\Column(name="userActive", type="boolean", options={"unsigned"=true,"default" = 1})
      */
     private $active;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="userFirstName", type="string", length=45, nullable=false)
-     */
-    private $firstName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="userLastName", type="string", length=45, nullable=false)
-     */
-    private $lastName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="userEmail", type="string", length=255, nullable=true)
+     * @ORM\Column(name="userEmail", type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="userGender", type="string", length=255, nullable=false, columnDefinition="enum('m','f')")
+     * @ORM\Column(name="userFirstName", type="string", length=45)
      */
-    private $gender;
-
-    /**
-     * @var \Date
-     *
-     * @ORM\Column(name="userBirthday", type="date", nullable=false)
-     */
-    private $birthday;
+    private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="user__fbId", type="string", length=255, nullable=true)
+     * @ORM\Column(name="userLastName", type="string", length=45)
      */
-    private $fbId;
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userPhone", type="string", length=45)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userGender", type="string", columnDefinition="enum('m', 'f')", nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userPassword", type="string", length=128)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userSalt", type="string", length=45, options={"default" = "secretStuffHere"}, nullable=false)
+     */
+    private $salt;
 
     /**
      * @var \DateTime
@@ -80,32 +87,15 @@ class User implements UserInterface
     private $creationDate;
 
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="userScore", type="float")
+     * @ORM\Column(name="userRole", type="string", columnDefinition="enum('ADMIN', 'ENSEIGNANT', 'ETUDIANT')")
      */
-    private $score;
+    private $role;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="userOffline", type="boolean", nullable=false, options={"unsigned"=true,"default" = 0})
-     */
-    private $offline;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="userLastUpdate", type="datetime", nullable=false)
-     */
-    protected $lastUpdate;
-
-    public function __construct() {
+    public function __construct()
+    {
         $this->setCreationDate(new \DateTime());
-        $this->setScore(0);
-        $this->setOffline(0);
-        $this->setActive(1);
-        $this->setLastUpdate(new \DateTime());
     }
 
 
@@ -120,23 +110,9 @@ class User implements UserInterface
     }
 
     /**
-     * Set active
-     *
-     * @param boolean $active
-     *
-     * @return User
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
      * Get active
      *
-     * @return boolean
+     * @return integer
      */
     public function getActive()
     {
@@ -144,63 +120,14 @@ class User implements UserInterface
     }
 
     /**
-     * Set firstName
+     * Set active
      *
-     * @param string $firstName
-     *
-     * @return User
+     * @param integer $active
+     * @return Admin
      */
-    public function setFirstName($firstName)
+    public function setActive($active)
     {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
-     * @return User
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
+        $this->active = $active;
 
         return $this;
     }
@@ -216,15 +143,83 @@ class User implements UserInterface
     }
 
     /**
-     * Set gender
+     * Set email
      *
-     * @param string $gender
-     *
-     * @return User
+     * @param string $email
+     * @return Admin
      */
-    public function setGender($gender)
+    public function setEmail($email)
     {
-        $this->gender = $gender;
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     * @return Admin
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     * @return Admin
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return Admin
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
 
         return $this;
     }
@@ -240,63 +235,60 @@ class User implements UserInterface
     }
 
     /**
-     * Set birthday
+     * Set gender
      *
-     * @param \DateTime $birthday
-     *
-     * @return User
+     * @param string $gender
+     * @return Admin
      */
-    public function setBirthday($birthday)
+    public function setGender($gender)
     {
-        $this->birthday = $birthday;
+        $this->gender = $gender;
 
         return $this;
     }
 
     /**
-     * Get birthday
-     *
-     * @return \DateTime
-     */
-    public function getBirthday()
-    {
-        return $this->birthday;
-    }
-
-    /**
-     * Set fbId
-     *
-     * @param string $fbId
-     *
-     * @return User
-     */
-    public function setFbId($fbId)
-    {
-        $this->fbId = $fbId;
-
-        return $this;
-    }
-
-    /**
-     * Get fbId
+     * Get password
      *
      * @return string
      */
-    public function getFbId()
+    public function getPassword()
     {
-        return $this->fbId;
+        return $this->password;
     }
 
     /**
-     * Set creationDate
+     * Set password
      *
-     * @param \DateTime $creationDate
-     *
-     * @return User
+     * @param string $password
+     * @return Admin
      */
-    public function setCreationDate($creationDate)
+    public function setPassword($password)
     {
-        $this->creationDate = $creationDate;
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return Admin
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
 
         return $this;
     }
@@ -312,101 +304,54 @@ class User implements UserInterface
     }
 
     /**
-     * Set score
+     * Set creationDate
      *
-     * @param float $score
-     *
-     * @return User
+     * @param \DateTime $creationDate
+     * @return Admin
      */
-    public function setScore($score)
+    public function setCreationDate($creationDate)
     {
-        $this->score = $score;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
 
     /**
-     * Get score
+     * Get role
      *
-     * @return float
+     * @return string
      */
-    public function getScore()
+    public function getRole()
     {
-        return $this->score;
+        return $this->role;
     }
 
     /**
-     * Set offline
+     * Set role
      *
-     * @param boolean $offline
-     *
-     * @return User
+     * @param string $role
+     * @return Admin
      */
-    public function setOffline($offline)
+    public function setRole($role)
     {
-        $this->offline = $offline;
+        $this->role = $role;
 
         return $this;
     }
 
-    /**
-     * Get offline
-     *
-     * @return boolean
-     */
-    public function getOffline()
+    public function eraseCredentials()
     {
-        return $this->offline;
-    }
-
-    /**
-     * Get lastUpdate
-     *
-     * @return \DateTime
-     */
-    public function getLastUpdate()
-    {
-        return $this->lastUpdate;
-    }
-
-    /**
-     * Set lastUpdate
-     *
-     * @param \DateTime $lastUpdate
-     * @return User
-     */
-    public function setLastUpdate($lastUpdate)
-    {
-        $this->lastUpdate = $lastUpdate;
-
-        return $this;
     }
 
     /** {@inheritdoc} */
-    public function getRoles() {
-        return array('ROLE_USER');
-    }
-    //=============== UNUSED, BUT DO NOT REMOVE =============//
-
-    public function getUsername() {
-        return $this->getFbId();
+    public function getRoles()
+    {
+        return array('ROLE_ADMIN', 'ROLE_ENSEIGNANT', 'ROLE_ETUDIANT');
     }
 
-    /** @inheritdoc} */
-    public function getPassword() {
-        return '';
+    public function getUsername()
+    {
+        return $this->firstName;
     }
-
-
-    /** {@inheritdoc} */
-    public function eraseCredentials() {
-        
-    }
-
-    public function getSalt() {
-        return '';
-    }
-
-    //=============== END UNUSED =============//
 }
 

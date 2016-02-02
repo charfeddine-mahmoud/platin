@@ -1,0 +1,57 @@
+<script type="text/javascript">
+    if (typeof currentUrl === 'undefined')
+    {
+        window.location = '/#/profile';
+    }
+</script>
+<div class="row" id="title">
+      <h1 style="padding-left: 2%;padding-bottom: 5%;">Gérer mon compte</h1>
+</div>
+<div flash-message="5000" ></div>
+<div class="row">
+
+    <div class="col-md-4 col-sm-6 hero-feature text-center">
+        <div class="thumbnail">
+            <video width="300" height="250" controls="controls">
+              <source src="{{ asset('bundles/api/video/chaine.mp4') }}" type="video/mp4" />
+              <source src="{{ asset('bundles/api/video/chaine.webm') }}" type="video/webm" />
+              <source src="{{ asset('bundles/api/video/chaine.ogv') }}" type="video/ogg" />
+            </video>
+        </div>
+    </div>
+
+    <div class="col-md-8 col-sm-6">
+        <div class="thumbnail">
+            <span class="iteminactiveAccount">Informations personnelles</span> 
+            <br /><br /><br/>
+            {% verbatim %}
+              <li id="label">NOM</li>
+              <b id="value" ng-hide="editableUserName" ng-click="editableUserName=true" ng-init="uName = user.name"> {{ user.name }} </b>
+              <input ng-show="editableUserName" class="form-control" ng-hasfocus="editableUserName" ng-init="" ng-model="uName" ng-blur="updateUserName(uName, user.name)"></input>
+
+              <li id="label">PRENOM</li>
+              <b id="value" ng-hide="editableUserSurname" ng-click="editableUserSurname=true" ng-init="uSurname = user.surname"> {{ user.surname }} </b>
+              <input ng-show="editableUserSurname" class="form-control" ng-hasfocus="editableUserSurname" ng-init="" ng-model="uSurname" ng-blur="updateUserSurname(uSurname, user.surname)"></input>
+
+              <li id="label">EMAIL</li>
+              <b id="value" ng-hide="editableUserEmail" ng-click="editableUserEmail=true" ng-init="uEmail = user.email"> {{ user.email }} </b>
+              <input ng-show="editableUserEmail" class="form-control" ng-hasfocus="editableUserEmail" ng-init="" ng-model="uEmail" ng-blur="updateUserEmail(uEmail, user.email)"></input>
+
+              <li id="label">NUMERO TELEPHONE</li>
+              <b id="value" ng-hide="editableUserPhoneNumber" ng-click="editableUserPhoneNumber=true" ng-init="uPhone = user.phoneNumber"> {{ user.phone }} </b>
+              <input ng-show="editableUserPhoneNumber" class="form-control" ng-hasfocus="editableUserPhoneNumber" ng-init="" ng-model="uPhone" ng-blur="updateUserPhone(uPhone, user.phoneNumber)"></input>
+
+              <li id="label">MOT DE PASSE</li>
+              <b id="value" ng-hide="editableUserPassword" ng-click="editableUserPassword=true" ng-init="uPassword = user.password"> {{ user.password }} </b>
+              <input ng-show="editableUserPassword" class="form-control" ng-hasfocus="editableUserPassword" ng-init="" ng-model="uPassword" ng-blur=""></input>
+
+              <li id="label">CONFIRMATION MOT DE PASSE</li>
+              <b id="value" ng-hide="editableUserPasswordConfirm" ng-click="editableUserPasswordConfirm=true" ng-init="uPasswordConfirm = user.passwordConfirm"> {{ user.passwordConfirm }} </b>
+              <input ng-show="editableUserPasswordConfirm" class="form-control" ng-hasfocus="editableUserPasswordConfirm" ng-init="" ng-model="uPasswordConfirm" ng-blur="updateUserPassword(uPassword, uPasswordConfirm)"></input>
+            {% endverbatim %}
+              <br /><br />
+                    <div id="trait"></div>
+                    <br /><br /> 
+        </div>
+    </div>
+</div>

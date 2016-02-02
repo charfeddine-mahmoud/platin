@@ -1,173 +1,73 @@
 <script type="text/javascript">
     if (typeof currentUrl === 'undefined')
     {
-        window.location = '/#/';
+        window.location = '/#/roomTeachers';
     }
 </script>
-        <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-        <div class="mdl-layout__header-row">
-<!--           <span class="mdl-layout-title">Home</span> -->
-          
-          <div class="mdl-layout-spacer"></div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search">
-              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+        <hr>
+
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Salle des professeurs</h3>
             </div>
-          </div>
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons">power_settings_new</i>
-          </button>
-<!--           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"> -->
-<!--             <i class="material-icons">more_vert</i> -->
-<!--           </button> -->
-<!--           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn"> -->
-<!--             <li class="mdl-menu__item">About</li> -->
-<!--             <li class="mdl-menu__item">Contact</li> -->
-<!--             <li class="mdl-menu__item">Legal information</li> -->
-<!--           </ul> -->
         </div>
-      </header>
-      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-800 mdl-color-text--blue-grey-50">
-        <header class="demo-drawer-header" style="height: auto;">
-        <img src="{{ asset('bundles/api/images/logo-cezar.png') }}" height="125px" width="125px">
-<!--           <img src="images/onyme-logo_bg.png" class="demo-avatar"> -->
-<!--           <div class="demo-avatar-dropdown"> -->
-<!--             <span>onyme@onyme.com</span> -->
-<!--             <div class="mdl-layout-spacer"></div> -->
-<!--             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> -->
-<!--               <i class="material-icons" role="presentation">arrow_drop_down</i> -->
-<!--               <span class="visuallyhidden">Accounts</span> -->
-<!--             </button> -->
-<!--             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn"> -->
-<!--               <li class="mdl-menu__item">another@onyme.com</li> -->
-<!--               <li class="mdl-menu__item">another.again@onyme.com</li> -->
-<!--               <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li> -->
-<!--             </ul> -->
-<!--           </div> -->
-        </header>
-        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-900">
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-200 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/sandw_incc.png') }}" width="45" height="41"></i>Sandwich</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/assiette_i2.png') }}" width="44" height="35"></i>Asiette</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/hamberger.png') }}" width="42" height="35"></i>Hamburger</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/frit2.png') }}" width="37" height="42"></i>Barquette</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/pilon.png') }}" width="40" height="36"></i>Poulet</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/boisson_g.png') }}" width="37" height="42"></i>Boisson</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><img src="{{ asset('bundles/api/images/donot2.png') }}" width="40" height="27"></i>Dessert</a>
-          <div class="mdl-layout-spacer"></div>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
-        </nav>
-      </div>
-      <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid"> <!-- start content 1 -->
-          <!--div class="mdl-layout__tab-bar mdl-js-ripple-effect"-->
-          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col">
-                    
-           <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-            <div class="mdl-tabs__tab-bar">
-                <a href="#choix" class="mdl-tabs__tab is-active">Choix</a>
-                <a href="#sauce" class="mdl-tabs__tab">Sauce</a>
-                <a href="#viande" class="mdl-tabs__tab">Viande</a>
-                <a href="#supp" class="mdl-tabs__tab">Suppl&eacute;ment</a>
-            </div>
-          
-            <div class="mdl-tabs__panel is-active" id="choix">
-              <!--<ul>
-                <li>scalope</li>
-                <li>kabeb</li>
-                <li>krarez</li>
-                <li>bachoula</li>
-              </ul>-->
-              <!--<div class="mdl-grid">
-                  <div class="mdl-cell mdl-cell--3-col"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Tacos</button></div>
-                  <div class="mdl-cell mdl-cell--3-col"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Am&eacute;rican</button></div>
-                  <div class="mdl-cell mdl-cell--3-col"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">galette</button></div>
-              </div>-->
-              <div class="mdl-grid"><!--   --no-spacing  -->
-                  <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">tacos</button></div>
-                  <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">kebab</button></div>
-                  <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ">cesar</button></div>
-              <!--<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Tacos</button></div>-->
-            </div>
-<!--              Ketchup ¤ Sauce blanche ¤ Tartare ¤ Barbecue ¤ Mayonnaise ¤ Burger
-Andalouse ¤ Curry ¤ Cheezy easy ¤ Fish to fish
-Algérienne ¤ Samouraï ¤ Marocaine ¤ Moutarde ¤ Tunisienne ¤ Harissa
--->            </div>
-                <div class="mdl-tabs__panel" id="sauce">
-                    <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Algérienne</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Ketchup</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">blanche</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Mayonnaise</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Tartare</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Barbecue</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Burger</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Andalouse</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Curry</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cheezy</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Fish</button></div>
-                    
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Samouraï</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Marocaine</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Moutarde</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Harissa</button></div>
-                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Tunisienne</button></div>
+        <!-- /.row -->
+
+        <!-- Page Features -->
+        <div class="row text-center">
+
+            <div class="col-md-4 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <video width="300" height="250" controls="controls">
+                      <source src="{{ asset('bundles/api/video/chaine.mp4') }}" type="video/mp4" />
+                      <source src="{{ asset('bundles/api/video/chaine.webm') }}" type="video/webm" />
+                      <source src="{{ asset('bundles/api/video/chaine.ogv') }}" type="video/ogg" />
+                    </video>
+                    <div class="caption">
+                        <h4>Boite à outils pratique</h4>
+                        <p>Description de la boite à outil pratique</p>
+                        <p>
+                            <a href="/roomTeachers/support" class="btn btn-primary"><i class="fa fa-th-list"></i> Voir les supports accessibles</a> 
+                            <br /> <br />
+                            <a href="/roomTeachers/filing" class="btn btn-primary"><i class="fa fa-plus"></i> Déposer un support de cours</a>
+                        </p>
                     </div>
-    
-               </div>
-            <div class="mdl-tabs__panel" id="viande">
-              <ul>
-                <li>escargots</li>
-                <li>grenouille</li>
-              </ul>
+                </div>
             </div>
-            <div class="mdl-tabs__panel" id="supp">
-              <p>plus de frites :D</p>
+
+            <div class="col-md-4 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <video width="300" height="250" controls="controls">
+                      <source src="{{ asset('bundles/api/video/chaine.mp4') }}" type="video/mp4" />
+                      <source src="{{ asset('bundles/api/video/chaine.webm') }}" type="video/webm" />
+                      <source src="{{ asset('bundles/api/video/chaine.ogv') }}" type="video/ogg" />
+                    </video>
+                    <div class="caption">
+                        <h4>Boîte à outils théorique</h4>
+                        <p>Description de la Boîte à outils théorique</p>
+                        <p>
+                            <a href="#" class="btn btn-primary"><i class="fa fa-eye-slash"></i> Voir les fiches proposées</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-            
-          </div>
-          
-            <!--div >
-              <a href="#tab1" class="mdl-layout__tab is-active">choix</a>
-              <a href="#tab2" class="mdl-layout__tab">sauce</a>
-              <a href="#tab3" class="mdl-layout__tab">viande</a>
-              <a href="#tab4" class="mdl-layout__tab">suppléments</a>
+
+            <div class="col-md-4 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <video width="300" height="250" controls="controls">
+                      <source src="{{ asset('bundles/api/video/chaine.mp4') }}" type="video/mp4" />
+                      <source src="{{ asset('bundles/api/video/chaine.webm') }}" type="video/webm" />
+                      <source src="{{ asset('bundles/api/video/chaine.ogv') }}" type="video/ogg" />
+                    </video>
+                    <div class="caption">
+                        <h4>Mise en commun des réflexions</h4>
+                        <p>Description de la Mise en commun des réflexions</p>
+                        <p>
+                            <a href="/roomTeachers/forum" class="btn btn-primary"><i class="fa fa-video-camera"></i> Accéder au forum</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="mdl-layout__content">
-                <section class="mdl-layout__tab-panel is-active" id="tab1">
-                  <div class="page-content">content tab 1</div>
-                </section>
-                <section class="mdl-layout__tab-panel" id="tab2">
-                  <div class="page-content">content tab 2</div>
-                </section>
-                <section class="mdl-layout__tab-panel" id="tab3">
-                  <div class="page-content">content tab 3</div>
-                </section>
-                <section class="mdl-layout__tab-panel" id="tab4">
-                  <div class="page-content">content tab 4</div>
-                </section>
-            </div>-->
-            
-        </div><!-- end content 1 -->
-          
-          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--3-col ">
-            <p>Content c</p>
-          </div>
-          
-          
-          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--3-col mdl-layout--large-screen-only">
-            <p>Content d</p>
-          </div>
-          <!--<div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-            
-            <div class="demo-separator mdl-cell--1-col"></div>
-            
-          </div>-->
         </div>
-      </main>
-    </div>
+        <hr>

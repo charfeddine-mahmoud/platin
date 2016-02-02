@@ -1,0 +1,104 @@
+<script type="text/javascript">
+    if (typeof currentUrl === 'undefined')
+    {
+        window.location = '/#/roomTeachers/forum';
+    }
+</script>
+<div class="row" id="title">
+      <h1 style="padding-left: 2%;padding-bottom: 5%;">Mise en commun des réflexions - Espace discussion</h1>
+</div>
+<div flash-message="5000" ></div>
+<div class="row">
+    <a class="btn" id="productlabel" ng-click="addNewSubject = !addNewSubject;"><i class="glyphicon glyphicon-plus"></i> Créer un nouveau Sujet</a>
+    <br /> <br />
+    <form action="" method="post" ng-submit="processAddSubjectForm()" ng-show="addNewSubject">
+            <li id="label">Titre</li>
+            <br />
+            <input ng-model="title" class="form-control" type="text" required>
+            <br /><br />
+            <li id="label">Description</li>
+            <br />
+            <textarea class="form-control" rows="4" cols="50" ng-model="description" required></textarea>
+            <br /><br />
+            <input type="submit" value="Valider" class="btnValidate"/>
+            <br /><br />
+    </form>
+</div>
+<div class="row">
+            <div class="col-md-4 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <video width="300" height="250" controls="controls">
+                      <source src="{{ asset('bundles/api/video/chaine.mp4') }}" type="video/mp4" />
+                      <source src="{{ asset('bundles/api/video/chaine.webm') }}" type="video/webm" />
+                      <source src="{{ asset('bundles/api/video/chaine.ogv') }}" type="video/ogg" />
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-6 hero-feature">
+                <div class="col-md-2">
+                    <select ng-model="entryLimit" class="form-control">
+                        <option>5</option>
+                        <option>10</option>
+                        <option>20</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" ng-model="search" ng-change="filter()" placeholder="Rechercher" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    {% verbatim %}
+                        <h5 id="valueName" >{{ filtered.length }} / {{ totalItems}}</h5>
+                    {% endverbatim %}
+                </div>
+            </div>
+</div>
+        <br /><br />
+        <div class="row">
+            <div class="col-md-4 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <video width="300" height="250" controls="controls">
+                      <source src="{{ asset('bundles/api/video/chaine.mp4') }}" type="video/mp4" />
+                      <source src="{{ asset('bundles/api/video/chaine.webm') }}" type="video/webm" />
+                      <source src="{{ asset('bundles/api/video/chaine.ogv') }}" type="video/ogg" />
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-8" ng-show="filteredItems > 0">
+                <table class="table">
+                    <tr>
+                        <th id="valueName" style="width: 55%; text-align: center;">Sujet et description<br /> <a ng-click="sort_by('subject');"> <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <th id="valueName" style="width: 15%; text-align: center;">Date<br /> <a ng-click="sort_by('date');"> <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <th id="valueName" style="width: 15%; text-align: center;">Auteur<br /> <a ng-click="sort_by('user');"> <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <th id="valueName" style="width: 15%; text-align: center;">Messages</th>
+                    </tr>
+                    {% verbatim %}
+                        <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                            <td style="text-align: center; vertical-align: middle;">
+                                <span><strong><a href="/roomTeachers/contribution/subject/{{data.subjectId}}">{{data.subject}}</a></strong> </span>
+                                <br /> {{data.description}}
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">     
+                                <span style="color: #1290D0;">{{data.date}} </span>  
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                {{data.user}}
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                {{data.messages}}
+                            </td>
+                        </tr>
+                    {% endverbatim %}
+                </table>
+            </div>
+            <div class="col-md-12" ng-show="filteredItems == 0">
+                <div class="col-md-12">
+                    <h4 id="valueName" >Pas des données trouvées</h4>
+                </div>
+            </div>
+            <div class="col-md-12" ng-show="filteredItems > 0">
+                <pagination class="pagination-small" ng-model="currentPage" total-items="filteredItems" max-size="entryLimit"  boundary-links="true">
+                </pagination>
+            </div>
+        </div>

@@ -1,5 +1,5 @@
 vt_api:
-    host:     '%admin_subdomain%.%domain%'
+    host:     '%host%'
     resource: "@ApiBundle/Resources/config/routing.yml"
     prefix:   /
 
