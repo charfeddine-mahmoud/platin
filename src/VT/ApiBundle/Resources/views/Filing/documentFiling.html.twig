@@ -17,6 +17,11 @@
                       <source src="{{ asset('bundles/api/video/chaine.webm') }}" type="video/webm" />
                       <source src="{{ asset('bundles/api/video/chaine.ogv') }}" type="video/ogg" />
                     </video>
+                    <div class="caption">
+                        <p>
+                            <a href="/roomTeachers/support" class="btn btn-primary"><i class="fa fa-th-list"></i> Voir les supports accessibles</a> 
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -31,7 +36,7 @@
                         <div class="row">
                             <div class="span6">
                                 <div ngf-drop ngf-select ng-model="files" class="drop-box" 
-                                    ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true">Glisser votre fichier ici ou cliquer pour déposer</div>
+                                    ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"><i class="glyphicon glyphicon-log-in"></i> Glisser votre fichier ici ou cliquer pour déposer</div>
                                 <div ngf-no-file-drop>Glisser/Déposer n'est pas supporté par ce navigateur</div>
                             </div>
                         </div>
@@ -55,7 +60,7 @@
                         </div>
                         <div ng-show="fileAdded">
                           <br />
-                          <span class="categoryItem">Votre fichier a été ajouté <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteImage(imageId)"><i class="glyphicon glyphicon-remove"></i></a></span>
+                          <span class="categoryAddPhotoItem"><span class="validated"><i class="glyphicon glyphicon-ok"></i></span> Votre fichier a été ajouté <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteImage(imageId)"><i class="glyphicon glyphicon-remove"></i></a></span>
                           <br /> <br />
                         </div>
                         <input type="hidden" ng-model="imageId"></input>
@@ -66,7 +71,7 @@
                       <input class="form-control" typeahead-on-select="addNewSelectedPublicCategory($item)" my-enter="addPublic()" typeahead="category.categoryName for category in publicCategories | filter:$viewValue" ng-model="tagPublic" ng-blur="" placeholder="Etiquette"></input>
                       <br />
                       <div ng-repeat="categorySelected in publicCategoriesSelected">
-                        <span class="categoryItem">
+                        <span class="categoryPublicItem">
                           {% verbatim %} {{categorySelected.categoryName}} {% endverbatim %}
                             <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deletePublicCategory($index)"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
@@ -78,7 +83,7 @@
                       <input class="form-control" typeahead-on-select="addNewSelectedNiveauCategory($item)" my-enter="addNiveau()" typeahead="category.categoryName for category in niveauCategories | filter:$viewValue" ng-model="tagNiveau" ng-blur="" placeholder="Etiquette"></input>
                       <br />
                       <div ng-repeat="categorySelected in niveauCategoriesSelected">
-                        <span class="categoryItem">
+                        <span class="categoryNiveauItem">
                           {% verbatim %} {{categorySelected.categoryName}} {% endverbatim %}
                             <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteNiveauCategory($index)"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
@@ -90,7 +95,7 @@
                       <input class="form-control" typeahead-on-select="addNewSelectedThemeCategory($item)" my-enter="addTheme()" typeahead="category.categoryName for category in themeCategories | filter:$viewValue" ng-model="tagTheme" ng-blur="" placeholder="Etiquette"></input>
                       <br />
                       <div ng-repeat="categorySelected in themeCategoriesSelected">
-                        <span class="categoryItem">
+                        <span class="categoryThemeItem">
                           {% verbatim %} {{categorySelected.categoryName}} {% endverbatim %}
                             <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteThemeCategory($index)"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
@@ -102,7 +107,7 @@
                       <input class="form-control" typeahead-on-select="addNewSelectedObjectifCategory($item)" my-enter="addObjectif()" typeahead="category.categoryName for category in objectifCategories | filter:$viewValue" ng-model="tagObjectif" ng-blur="" placeholder="Etiquette"></input>
                       <br />
                       <div ng-repeat="categorySelected in objectifCategoriesSelected">
-                        <span class="categoryItem">
+                        <span class="categoryObjectifItem">
                           {% verbatim %} {{categorySelected.categoryName}} {% endverbatim %}
                             <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteObjectifCategory($index)"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
@@ -114,7 +119,7 @@
                       <input class="form-control" typeahead-on-select="addNewSelectedAutreCategory($item)" my-enter="addAutre()" typeahead="category.categoryName for category in autreCategories | filter:$viewValue" ng-model="tagAutre" ng-blur="" placeholder="Etiquette"></input>
                       <br />
                       <div ng-repeat="categorySelected in autreCategoriesSelected">
-                        <span class="categoryItem">
+                        <span class="categoryAutreItem">
                           {% verbatim %} {{categorySelected.categoryName}} {% endverbatim %}
                             <a id="deleteCategory" class="close-popup" ng-really-message="Voulez vous vraiment supprimer ?" ng-really-click="deleteAutreCategory($index)"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>

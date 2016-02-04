@@ -9,24 +9,35 @@
 </div>
 <div flash-message="5000" ></div>
 <div class="row">
-            <div class="col-md-2">
-                <select ng-model="entryLimit" class="form-control">
-                    <option>5</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>50</option>
-                    <option>100</option>
-                </select>
+            <div class="col-md-4 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <video width="300" height="250" controls="controls">
+                      <source src="{{ asset('bundles/api/video/chaine.mp4') }}" type="video/mp4" />
+                      <source src="{{ asset('bundles/api/video/chaine.webm') }}" type="video/webm" />
+                      <source src="{{ asset('bundles/api/video/chaine.ogv') }}" type="video/ogg" />
+                    </video>
+                </div>
             </div>
-            <div class="col-md-3">
-                <input type="text" ng-model="search" ng-change="filter()" placeholder="Recherche" class="form-control" />
+            <div class="col-md-8 col-sm-6 hero-feature">
+                <div class="col-md-2">
+                    <select ng-model="entryLimit" class="form-control">
+                        <option>5</option>
+                        <option>10</option>
+                        <option>20</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" ng-model="search" ng-change="filter()" placeholder="Rechercher" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    {% verbatim %}
+                        <h5 id="valueName" >{{ filtered.length }} / {{ totalItems}}</h5>
+                    {% endverbatim %}
+                </div>
             </div>
-            <div class="col-md-4">
-                {% verbatim %}
-                    <h5 id="valueName" >{{ filtered.length }} / {{ totalItems}}</h5>
-                {% endverbatim %}
-            </div>
-        </div>
+</div>
         <br /><br />
         <div class="row">
             <div class="col-md-12" ng-show="filteredItems > 0">
@@ -51,27 +62,27 @@
                             </td>
                             <td style="text-align: center; vertical-align: middle;">
                                 <ul ng-repeat="category in data.categoriesPublic">
-                                  <br/><span class="categoryPublicItem">{{category}}</span><br/><br/>
+                                  <span class="categoryPublicItem">{{category}}</span>
                                 </ul>
                             </td>
                             <td style="text-align: center; vertical-align: middle;">
                                 <ul ng-repeat="category in data.categoriesNiveau">
-                                  <br/><span class="categoryNiveauItem">{{category}}</span><br/><br/>
+                                  <span class="categoryNiveauItem">{{category}}</span>
                                 </ul>
                             </td>
                             <td style="text-align: center; vertical-align: middle;">
                                 <ul ng-repeat="category in data.categoriesTheme">
-                                  <br/><span class="categoryThemeItem">{{category}}</span><br/><br/>
+                                  <span class="categoryThemeItem">{{category}}</span>
                                 </ul>
                             </td>
                             <td style="text-align: center; vertical-align: middle;">
                                 <ul ng-repeat="category in data.categoriesObjectif">
-                                  <br/><span class="categoryObjectifItem">{{category}}</span><br/><br/>
+                                  <span class="categoryObjectifItem">{{category}}</span>
                                 </ul>
                             </td>
                             <td style="text-align: center; vertical-align: middle;">
                                 <ul ng-repeat="category in data.categoriesAutre">
-                                  <br/><span class="categoryAutreItem">{{category}}</span><br/><br/>
+                                  <span class="categoryAutreItem">{{category}}</span>
                                 </ul>
                             </td>
                             <td style="text-align: center; vertical-align: middle;">

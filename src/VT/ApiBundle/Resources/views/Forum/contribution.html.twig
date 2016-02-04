@@ -11,24 +11,37 @@
 <div class="row">
     <a class="btn" id="productlabel" href="/roomTeachers/forum"><i class="glyphicon glyphicon-circle-arrow-left"></i> Retourner à la page des sujets</a>
     <a class="btn" id="productlabel" ng-click="addNewContribution = !addNewContribution;"><i class="glyphicon glyphicon-plus"></i> Ajouter une nouvelle contribution</a>
-    <br /> 
+    <br /> <br /> 
 </div>
-<div class="row">
+<div class="row" ng-show="addNewContribution">
     
    <br />
-    <form action="" method="post" ng-submit="processAddContribution()" ng-show="addNewContribution"> 
-            <p style="text-align:center;">
-              <video id="preview" controls style="border: 1px solid rgb(15, 158, 238); height: 240px; width: 320px;"></video>
-            </p>
-            <li id="label">Informations supplémentaires</li>
-            <br />
-            <textarea style="width: 40%;" class="form-control" rows="4" cols="30" placeholder="liens, etc." ng-model="infos"></textarea>
-            <hr />
-            <button type="button" class="btnCanceled" id="record">S'enregistrer</button>
-            <button type="button" class="btnValidate" id="stop" disabled>Déposer</button>
-            <div id="container" style="padding:1em 2em;"></div>
-            <br /><br />
-    </form>
+   <div class="col-md-3">
+        <div class="thumbnail">
+            <video width="250" height="250" controls="controls">
+              <source src="{{ asset('bundles/api/video/chaine.mp4') }}" type="video/mp4" />
+              <source src="{{ asset('bundles/api/video/chaine.webm') }}" type="video/webm" />
+              <source src="{{ asset('bundles/api/video/chaine.ogv') }}" type="video/ogg" />
+            </video>
+        </div>
+   </div>
+   <div class="col-md-4">
+        <form action="" method="post" ng-submit="processAddContribution()"> 
+                <p style="text-align:center;">
+                  <video id="preview" controls style="border: 1px solid rgb(15, 158, 238); height: 250px; width: 320px;"></video>
+                </p>
+    </div>
+    <div class="col-md-5">            
+                <li id="label">Informations supplémentaires</li>
+                <br />
+                <textarea style="width: 55%;" class="form-control" rows="4" cols="50" placeholder="liens, etc." ng-model="infos"></textarea>
+                <hr />
+                <button type="button" class="btnCanceled" id="record"><i class="glyphicon glyphicon-facetime-video"></i> S'enregistrer</button>
+                <button type="button" class="btnValidate" id="stop" disabled><i class="glyphicon glyphicon-open"></i> Déposer</button>
+                <div id="container" style="padding:1em 2em;"></div>
+                <br /><br />
+        </form>
+    </div>
 </div>
 <div class="row">
 </div>
